@@ -1,4 +1,7 @@
 <Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="Tarea_3.md" />
+  </Folder>
   <Project Path="AdventureAdmin.Data/AdventureAdmin.Data.csproj" />
   <Project Path="AdventureAdmin.Ui/AdventureAdmin.Ui.csproj" />
   <Project Path="AdventureAdmin.WebApi/AdventureAdmin.WebApi.csproj" />
