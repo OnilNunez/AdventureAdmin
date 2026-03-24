@@ -21,7 +21,7 @@ namespace AdventureAdmin.Ui.CreditCard
             numYear.Maximum = 2099;
         }
 
-        private void btnGuardar_Click(object sender, EventArgs e)
+        private async void btnGuardar_Click(object sender, EventArgs e)
         {
             errorProvider1.Clear();
 
@@ -49,8 +49,8 @@ namespace AdventureAdmin.Ui.CreditCard
                     ModifiedDate = DateTime.Now
                 };
 
-                _context.CreditCards.Add(nuevaTarjeta);
-                _context.SaveChanges();
+                await _context.CreditCards.AddAsync(nuevaTarjeta);
+                await _context.SaveChangesAsync();
 
                 MessageBox.Show("Tarjeta guardada correctamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -63,9 +63,6 @@ namespace AdventureAdmin.Ui.CreditCard
             }
         }
 
-        private void CreditCardForm_Load(object sender, EventArgs e)
-        {
 
-        }
     }
 }
