@@ -100,7 +100,7 @@ partial class ProductForm
         layout.Controls.Add(txtName, 1, 1);
         layout.Controls.Add(lblName, 0, 1);
         layout.Controls.Add(lblProductNumber, 0, 0);
-        layout.Location = new Point(12, 51);
+        layout.Location = new Point(12, 55);
         layout.Name = "layout";
         layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 35F));
         layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 35F));

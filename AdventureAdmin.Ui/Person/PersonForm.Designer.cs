@@ -197,7 +197,7 @@
             chkNameStyle.Font = new Font("Segoe UI", 10F);
             chkNameStyle.Location = new Point(284, 264);
             chkNameStyle.Name = "chkNameStyle";
-            chkNameStyle.Size = new Size(310, 24);
+            chkNameStyle.Size = new Size(350, 34);
             chkNameStyle.TabIndex = 13;
             chkNameStyle.Text = "Orden oriental  (Apellido, Nombre)";
             // 
