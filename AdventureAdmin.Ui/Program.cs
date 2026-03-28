@@ -5,9 +5,11 @@ using AdventureAdmin.Ui.Department;
 using AdventureAdmin.Ui.Location;
 using AdventureAdmin.Ui.Person;
 using AdventureAdmin.Ui.Product;
+using AdventureAdmin.Ui.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System.Configuration;
+using Aplicada1.Core;
 
 namespace AdventureAdmin;
 
@@ -55,6 +57,9 @@ static class Program
         services.AddTransient<ProductDescriptionForm>();
         services.AddTransient<PersonList>();
         services.AddTransient<PersonForm>();
+
+        //Services 
+        services.AddTransient<CreditCardService>();
     }
 }
 
