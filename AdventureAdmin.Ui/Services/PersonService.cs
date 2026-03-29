@@ -9,14 +9,22 @@ public class PersonService(
     AdventureWorksContext context) 
   : IService<Data.Models.Person, int>
 {
-    public Task<Data.Models.Person?> Buscar(int id)
+    public async Task<Data.Models.Person?> Buscar(int id)
     {
-        throw new NotImplementedException();
+        return await context.People
+            .FirstOrDefaultAsync(p => p.BusinessEntityId == id);
     }
 
-    public Task<bool> Eliminar(int id)
+    public async Task<bool> Eliminar(int id)
     {
-        throw new NotImplementedException();
+        var person = context.People
+            .FirstOrDefault(p => p.BusinessEntityId == id);
+        if (person == null)
+            return false;
+        context.People.Remove(person);
+        var cantidad = await context.SaveChangesAsync();
+
+        return cantidad > 0;
     }
 
     public async Task<List<Data.Models.Person>> GetList(Expression<Func<Data.Models.Person, bool>> criterio)
