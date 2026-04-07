@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-using AdventureAdmin.Data.Context;
+﻿using AdventureAdmin.Data.Context;
+using Microsoft.EntityFrameworkCore;
+
 using AdventureAdmin.Data.Models;
 
 namespace AdventureAdmin.Ui.Location
@@ -22,6 +17,7 @@ namespace AdventureAdmin.Ui.Location
             _errorProvider = new ErrorProvider();
         }
 
+     
         private async void btnSave_Click(object sender, EventArgs e)
         {
             _errorProvider.Clear();
