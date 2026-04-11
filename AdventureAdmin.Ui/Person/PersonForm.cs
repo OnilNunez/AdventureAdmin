@@ -1,24 +1,25 @@
 ﻿using AdventureAdmin.Data.Context;
 using AdventureAdmin.Data.Models;
-using Microsoft.EntityFrameworkCore;
+using AdventureAdmin.Ui.Services;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace AdventureAdmin.Ui.Person;
 
 public partial class PersonForm : Form
 {
-    private readonly AdventureWorksContext _context;
+    private readonly PersonService _service;
     private readonly AdventureAdmin.Data.Models.Person? _person;
 
     private static readonly string[] PersonTypeCodes =
         { "SC", "IN", "SP", "EM", "VC", "GC" };
 
-    public PersonForm(AdventureWorksContext context) : this(context, null) { }
+    public PersonForm(PersonService service) : this(service, null) { }
 
-    public PersonForm(AdventureWorksContext context,
+    public PersonForm(PersonService service,
                       AdventureAdmin.Data.Models.Person? person)
     {
         InitializeComponent();
-        _context = context;
+        _service = service;
         _person = person;
 
         cmbPersonType.SelectedIndex = 0;
@@ -30,7 +31,10 @@ public partial class PersonForm : Form
 
     private void CargarDatos(AdventureAdmin.Data.Models.Person p)
     {
-        int idx = Array.IndexOf(PersonTypeCodes, p.PersonType?.ToUpper());
+        int idx = Array.FindIndex(
+            PersonTypeCodes,
+            code => string.Equals(code, p.PersonType?.Trim(), StringComparison.OrdinalIgnoreCase));
+
         cmbPersonType.SelectedIndex = idx >= 0 ? idx : 0;
 
         txtTitle.Text = p.Title ?? string.Empty;
@@ -87,9 +91,7 @@ public partial class PersonForm : Form
             if (_person == null)
                 await Insertar();
             else
-                Actualizar();
-
-            await _context.SaveChangesAsync();
+                await Actualizar();
 
             this.DialogResult = DialogResult.OK;
             this.Close();
@@ -108,35 +110,36 @@ public partial class PersonForm : Form
 
     private async Task Insertar()
     {
-        var entity = new BusinessEntity
-        {
-            Rowguid = Guid.NewGuid(),
-            ModifiedDate = DateTime.Now
-        };
-        _context.BusinessEntities.Add(entity);
-        await _context.SaveChangesAsync();
+        var businessEntityId = await _service.CrearBusinessEntity();
 
-        var p = new AdventureAdmin.Data.Models.Person
+        var p = new Data.Models.Person
         {
-            BusinessEntityId = entity.BusinessEntityId,
+            BusinessEntityId = businessEntityId,
             Rowguid = Guid.NewGuid(),
             ModifiedDate = DateTime.Now
         };
+
         AplicarCampos(p);
-        _context.People.Add(p);
+        await _service.Guardar(p);
     }
 
-    private void Actualizar()
+    private async Task Actualizar()
     {
-        var p = _context.People.Find(_person!.BusinessEntityId);
+        var p = await _service.Buscar(_person!.BusinessEntityId);
+
         if (p == null) return;
 
         AplicarCampos(p);
         p.ModifiedDate = DateTime.Now;
+
+        await _service.Actualizar(p);
     }
 
     private void AplicarCampos(AdventureAdmin.Data.Models.Person p)
     {
+        if (cmbPersonType.SelectedIndex < 0 || cmbPersonType.SelectedIndex >= PersonTypeCodes.Length)
+            throw new InvalidOperationException("Tipo de persona inválido.");
+
         p.PersonType = PersonTypeCodes[cmbPersonType.SelectedIndex];
         p.Title = NullIfEmpty(txtTitle.Text);
         p.FirstName = txtFirstName.Text.Trim();
@@ -156,3 +159,4 @@ public partial class PersonForm : Form
         this.Close();
     }
 }
+
