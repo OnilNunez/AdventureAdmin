@@ -23,7 +23,7 @@ namespace AdventureAdmin.Ui
 
         private void DepartmentForm_Load(object sender, EventArgs e)
         {
-            btnGuardar.Text = _entidad == null ? "Crear" : "Actualizar";
+            btnGuardar.Text = _entidad == null ? "💾 Guardar" : "Actualizar";
         }
 
         private void CargarDatos(Data.Models.Department entidad)
