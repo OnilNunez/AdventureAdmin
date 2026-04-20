@@ -1,3 +1,4 @@
+
 ﻿using AdventureAdmin.Data.Context;
 using AdventureAdmin.Data.Models;
 using Aplicada1.Core;
@@ -70,4 +71,7 @@ public async Task<int> CrearBusinessEntity()
         return entity.BusinessEntityId;
     }
 }
+
+
+
 

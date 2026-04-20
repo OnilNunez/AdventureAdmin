@@ -1,6 +1,10 @@
+
+using AdventureAdmin.Ui.Person;
+
 using AdventureAdmin.Ui.Department;
 using AdventureAdmin.Ui.CreditCard;
 using AdventureAdmin.Ui.Location;
+
 using AdventureAdmin.Ui.Product;
 using AdventureAdmin.Ui.ProductCategory;
 using Microsoft.Extensions.DependencyInjection;
@@ -94,8 +98,13 @@ public partial class MainForm : Form
 
     private void personToolStripMenuItem_Click(object sender, EventArgs e)
     {
+
+        var form = Program.ServiceProvider.GetRequiredService<PersonList>();
+        form.Show();
+
         var personList = Program.ServiceProvider.GetRequiredService<AdventureAdmin.Ui.Person.PersonList>();
         personList.Show();
+
     }
 
     private void creditCardToolStripMenuItem_Click(object sender, EventArgs e)
