@@ -4,11 +4,15 @@ using AdventureAdmin.Ui.Person;
 using AdventureAdmin.Ui.Department;
 using AdventureAdmin.Ui.CreditCard;
 using AdventureAdmin.Ui.Location;
+using AdventureAdmin.Data.Models;
+using AdventureAdmin.Ui.ContactType;
 
 using AdventureAdmin.Ui.Product;
+using AdventureAdmin.Ui.ShipMethod;
 using AdventureAdmin.Ui.ProductCategory;
 using Microsoft.Extensions.DependencyInjection;
 using AdventureAdmin.Ui.Culture;
+using AdventureAdmin.Ui.Business_Entity;
 
 namespace AdventureAdmin;
 
@@ -48,7 +52,8 @@ public partial class MainForm : Form
 
     private void shipMethodToolStripMenuItem_Click(object sender, EventArgs e)
     {
-
+        var shipMethodList = Program.ServiceProvider.GetRequiredService<ShipMethodList>();
+        shipMethodList.Show();
     }
 
     private void phoneNumberTypeToolStripMenuItem_Click(object sender, EventArgs e)
@@ -69,7 +74,8 @@ public partial class MainForm : Form
 
     private void businessEntityToolStripMenuItem_Click(object sender, EventArgs e)
     {
-
+        var businessEntityList = Program.ServiceProvider.GetRequiredService<BusinessEntityList>();
+        businessEntityList.Show();
     }
 
     private void locationToolStripMenuItem_Click(object sender, EventArgs e)
@@ -118,7 +124,13 @@ public partial class MainForm : Form
 
     private void contactTypeToolStripMenuItem_Click(object sender, EventArgs e)
     {
+        /*
+         * var productList = Program.ServiceProvider.GetRequiredService<ProductList>();
+        productList.Show();
+         */
 
+        var contactTypeList = Program.ServiceProvider.GetRequiredService<ContactTypeList>();
+        contactTypeList.Show();
     }
 
     private void scrapReasonToolStripMenuItem_Click(object sender, EventArgs e)

@@ -18,11 +18,12 @@
 
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             lblTitulo = new Label();
             lblSeparator = new Label();
             btnNuevoRegistro = new Button();
             dataGridView2 = new DataGridView();
+            ModificarRegistro = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
             SuspendLayout();
             // 
@@ -50,7 +51,7 @@
             btnNuevoRegistro.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnNuevoRegistro.Location = new Point(15, 62);
             btnNuevoRegistro.Name = "btnNuevoRegistro";
-            btnNuevoRegistro.Size = new Size(190, 38);
+            btnNuevoRegistro.Size = new Size(190, 50);
             btnNuevoRegistro.TabIndex = 2;
             btnNuevoRegistro.Text = "Nuevo Registro";
             btnNuevoRegistro.UseVisualStyleBackColor = true;
@@ -62,17 +63,17 @@
             dataGridView2.AllowUserToDeleteRows = false;
             dataGridView2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridView2.BorderStyle = BorderStyle.Fixed3D;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Control;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView2.Font = new Font("Segoe UI", 10F);
-            dataGridView2.Location = new Point(15, 112);
+            dataGridView2.Location = new Point(15, 128);
             dataGridView2.Margin = new Padding(4);
             dataGridView2.MultiSelect = false;
             dataGridView2.Name = "dataGridView2";
@@ -81,14 +82,26 @@
             dataGridView2.RowHeadersWidth = 51;
             dataGridView2.RowTemplate.Height = 28;
             dataGridView2.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView2.Size = new Size(1226, 416);
+            dataGridView2.Size = new Size(1226, 418);
             dataGridView2.TabIndex = 1;
+            // 
+            // ModificarRegistro
+            // 
+            ModificarRegistro.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            ModificarRegistro.Location = new Point(211, 62);
+            ModificarRegistro.Name = "ModificarRegistro";
+            ModificarRegistro.Size = new Size(231, 50);
+            ModificarRegistro.TabIndex = 3;
+            ModificarRegistro.Text = "Modificar Registro";
+            ModificarRegistro.UseVisualStyleBackColor = true;
+            ModificarRegistro.Click += ModificarRegistro_Click;
             // 
             // PersonList
             // 
             AutoScaleDimensions = new SizeF(11F, 28F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1256, 544);
+            ClientSize = new Size(1256, 562);
+            Controls.Add(ModificarRegistro);
             Controls.Add(lblTitulo);
             Controls.Add(lblSeparator);
             Controls.Add(btnNuevoRegistro);
@@ -103,5 +116,6 @@
             ResumeLayout(false);
             PerformLayout();
         }
+        private Button ModificarRegistro;
     }
 }
