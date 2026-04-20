@@ -93,7 +93,7 @@ static class Program
         //services.AddTransient<LocationService>();
         //services.AddTransient<SpecialOfferService>();
         //services.AddTransient<CultureService>();
-        //services.AddTransient<PersonService>();
+        services.AddTransient<PersonService>();
         //services.AddTransient<ContactTypeService>();
         //services.AddTransient<ScrapReasonService>();
 
